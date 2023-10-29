@@ -5,6 +5,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 // import { MatTableModule } from '@angular/material/table';
 import { EmpleadoService } from '../../services/empleado.service';
 import { Empleado } from 'src/app/models/empleado';
+import { MatDialog } from '@angular/material/dialog';
+import { MensajeConfirmacionComponent } from '../shared/mensaje-confirmacion/mensaje-confirmacion.component';
 
 @Component({
   selector: 'app-list-empleado',
@@ -26,7 +28,10 @@ export class ListEmpleadoComponent {
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
-  constructor(private empleadoService: EmpleadoService) {}
+  constructor(
+    private empleadoService: EmpleadoService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -49,8 +54,17 @@ export class ListEmpleadoComponent {
   }
 
   eliminarEmpleado(index: number) {
-    console.log(index);
-    this.empleadoService.eliminarEmpleado(index);
-    this.cargarEmpleados();
+    const dialogRef = this.dialog.open(MensajeConfirmacionComponent, {
+      width: '350px',
+      data: { mensaje: 'Está seguro que desea eliminar el empleado?' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'Aceptar') {
+        console.log(index);
+        this.empleadoService.eliminarEmpleado(index);
+        this.cargarEmpleados();
+      }
+    });
   }
 }

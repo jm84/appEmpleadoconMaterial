@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [],
@@ -21,6 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatPaginatorModule,
     MatIconModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
   exports: [
     MatSliderModule,
@@ -30,6 +34,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatPaginatorModule,
     MatIconModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
 })
 export class AngularMaterialModule {}
