@@ -7,6 +7,7 @@ import { EmpleadoService } from '../../services/empleado.service';
 import { Empleado } from 'src/app/models/empleado';
 import { MatDialog } from '@angular/material/dialog';
 import { MensajeConfirmacionComponent } from '../shared/mensaje-confirmacion/mensaje-confirmacion.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list-empleado',
@@ -30,7 +31,8 @@ export class ListEmpleadoComponent {
   paginator!: MatPaginator;
   constructor(
     private empleadoService: EmpleadoService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +66,9 @@ export class ListEmpleadoComponent {
         console.log(index);
         this.empleadoService.eliminarEmpleado(index);
         this.cargarEmpleados();
+        this.snackBar.open('Eliminado con éxito!', '', {
+          duration: 23000,
+        });
       }
     });
   }
