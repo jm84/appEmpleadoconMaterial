@@ -37,4 +37,17 @@ export class EmpleadoService {
   agregarEmpleado(empleado: Empleado) {
     this.listEmpleado.unshift(empleado);
   }
+
+  getEmpleado(index: number) {
+    return this.listEmpleado[index];
+  }
+
+  editEmpleado(empleado: Empleado, idEmpleado: number) {
+    this.listEmpleado[idEmpleado].nombreCompleto = empleado.nombreCompleto;
+    this.listEmpleado[idEmpleado].Correo = empleado.Correo;
+    this.listEmpleado[idEmpleado].FechaIngreso = empleado.FechaIngreso;
+    this.listEmpleado[idEmpleado].Telefono = empleado.Telefono;
+    this.listEmpleado[idEmpleado].EstadoCivil = empleado.EstadoCivil;
+    this.listEmpleado[idEmpleado].Sexo = empleado.Sexo;
+  }
 }
